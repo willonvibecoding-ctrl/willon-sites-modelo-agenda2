@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OdontoPrime | Clínica Odontológica Integrada & Estética do Sorriso</title>
+<meta name="description" content="Tratamentos odontológicos modernos em ambiente acolhedor: alinhadores invisíveis, implantes guiados, lentes de porcelana e clareamento dental em São Paulo.">
+
+<!-- Google Fonts: Sora (Display) + Plus Jakarta Sans (Texto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN & Lucide Icons -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
+          display: ['Sora', 'sans-serif'],
+        },
+        colors: {
+          teal: {
+            50: '#F0FDFA',
+            100: '#CCFBF1',
+            200: '#99F6E4',
+            500: '#14B8A6',
+            600: '#0D9488',
+            700: '#0F766E',
+            800: '#115E59',
+            900: '#134E4A',
+          },
+          cyanSoft: {
+            50: '#F0F9FF',
+            100: '#E0F2FE',
+            500: '#0EA5E9',
+            600: '#0284C7',
+          },
+          ice: '#F8FAFC',
+          slateText: {
+            900: '#0F172A',
+            800: '#1E293B',
+            600: '#475569',
+            500: '#64748B',
+          }
+        },
+        boxShadow: {
+          tealGlow: '0 10px 30px -8px rgba(13, 148, 136, 0.35)',
+          card: '0 12px 32px -8px rgba(15, 23, 42, 0.06)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 96px; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FFFFFF; }
+  h1, h2, h3, .font-display { font-family: 'Sora', sans-serif; }
+
+  .bg-hero-clinic {
+    background: radial-gradient(100% 100% at 85% 10%, #E6FFFA 0%, #F0FDFA 40%, #FFFFFF 100%);
+  }
+
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+  .faq-item.open .faq-content {
+    max-height: 400px;
+  }
+  .faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-chevron { transition: transform 0.3s ease; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .focus-ring:focus-visible {
+    outline: 2px solid #0D9488;
+    outline-offset: 3px;
+  }
+
+  ::selection { background: #0D9488; color: #FFFFFF; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+
+<body class="text-slateText-900 antialiased">
+
+<!-- ================= 1. PREVIEW RIBBON ================= -->
+<div class="bg-teal-900 text-white text-xs sm:text-sm py-2 px-4 relative z-[60] border-b border-teal-800">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+    <p class="leading-tight">
+      Você está visualizando o <span class="font-bold text-teal-200">Modelo Agenda 2</span> da <span class="font-bold">Willon Sites</span>
+    </p>
+    <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Quero%20o%20site%20Modelo%20Agenda%202" target="_blank" rel="noopener noreferrer"
+       class="focus-ring inline-flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 text-white font-bold text-xs px-4 py-1 rounded-full transition-colors shadow-sm whitespace-nowrap">
+      Quero este site
+      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+    </a>
+  </div>
+</div>
+
+<!-- ================= 2. TOPBAR & HEADER ================= -->
+<div class="bg-teal-50/80 border-b border-teal-100/60 text-teal-800 text-xs py-2 hidden md:block">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-600"></i> Av. das Nações, 1.200 – Jardim América, São Paulo</span>
+      <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal-600"></i> Seg a Sex: 08h às 19h · Sáb: 08h às 13h</span>
+    </div>
+    <div class="flex items-center gap-4 font-semibold">
+      <a href="tel:+5511974121551" class="hover:text-teal-600 transition-colors flex items-center gap-1"><i data-lucide="phone" class="w-3.5 h-3.5"></i> (11) 97412-1551</a>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 gap-4">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 focus-ring rounded-lg shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center shadow-tealGlow text-white shrink-0">
+          <i data-lucide="smile" class="w-6 h-6"></i>
+        </div>
+        <span class="font-display text-xl sm:text-2xl font-extrabold text-slateText-900 tracking-tight whitespace-nowrap">
+          Odonto<span class="text-teal-600">Prime</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold text-slateText-600 shrink-0">
+        <a href="#especialidades" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Especialidades</a>
+        <a href="#diferenciais" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Por Que Escolher</a>
+        <a href="#corpo-clinico" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Corpo Clínico</a>
+        <a href="#processo" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Como Funciona</a>
+        <a href="#depoimentos" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Depoimentos</a>
+        <a href="#faq" class="hover:text-teal-600 transition-colors focus-ring rounded whitespace-nowrap">Dúvidas</a>
+      </nav>
+
+      <!-- Right CTA -->
+      <div class="hidden lg:flex items-center gap-4 shrink-0">
+        <a href="#agendamento"
+           class="focus-ring inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm px-5 py-2.5 rounded-full transition-all shadow-tealGlow hover:scale-105 whitespace-nowrap">
+          <i data-lucide="calendar" class="w-4 h-4 shrink-0"></i>
+          <span>Agendar Consulta</span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" aria-label="Abrir menu" aria-expanded="false" class="lg:hidden focus-ring text-slateText-800 p-2 rounded-lg shrink-0">
+        <i data-lucide="menu" class="w-7 h-7" id="icon-menu"></i>
+        <i data-lucide="x" class="w-7 h-7 hidden" id="icon-close"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="lg:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+      <nav class="flex flex-col gap-1 pb-6 text-slateText-600 font-semibold border-t border-slate-100 pt-4">
+        <a href="#especialidades" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Especialidades</a>
+        <a href="#diferenciais" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Por Que Escolher</a>
+        <a href="#corpo-clinico" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Corpo Clínico</a>
+        <a href="#processo" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Como Funciona</a>
+        <a href="#depoimentos" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Depoimentos</a>
+        <a href="#faq" class="mobile-link py-3 px-3 rounded-lg hover:bg-teal-50 hover:text-teal-700 transition-colors">Dúvidas</a>
+        <a href="#agendamento"
+           class="mobile-link mt-3 flex items-center justify-center gap-2 bg-teal-600 text-white font-bold text-sm px-5 py-3 rounded-full">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          Agendar Consulta no WhatsApp
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 3. HERO SECTION (100% CLARO & SOLAR) ================= -->
+<section class="relative bg-hero-clinic overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+      <!-- Coluna Esquerda: Proposta de Valor -->
+      <div class="lg:col-span-7 reveal">
+        <span class="inline-flex items-center gap-2 bg-white border border-teal-200 text-teal-700 text-xs font-bold tracking-wider px-4 py-2 rounded-full uppercase shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+          Cuidado Completo · Odontologia Digital &amp; Humanizada
+        </span>
+
+        <h1 class="font-display mt-6 text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.1] text-slateText-900 tracking-tight">
+          Cuidado odontológico de excelência para <span class="text-teal-600">renovar o seu sorriso.</span>
+        </h1>
+
+        <p class="mt-6 text-slateText-600 text-base sm:text-lg max-w-xl leading-relaxed">
+          Combinamos tecnologia 3D de alta precisão com atendimento gentil e pontual. Protocolos sem dor e planejamento digital sob medida para você e toda a sua família.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#agendamento"
+             class="focus-ring group inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-4 rounded-full transition-all shadow-tealGlow hover:scale-105">
+            Agendar Avaliação
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+          <a href="#especialidades" class="focus-ring inline-flex items-center justify-center gap-2 bg-white hover:bg-teal-50 text-slateText-800 font-semibold px-8 py-4 rounded-full border border-slate-200 transition-colors">
+            Ver Especialidades
+          </a>
+        </div>
+
+        <!-- Micro-Prova Social -->
+        <div class="mt-10 flex flex-wrap items-center gap-6 pt-6 border-t border-teal-100">
+          <div class="flex items-center gap-3">
+            <div class="flex text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-xs text-slateText-600 font-medium"><strong class="text-slateText-900">4.9 / 5.0</strong> no Google (+320 avaliações)</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slateText-600">
+            <i data-lucide="shield-check" class="w-4 h-4 text-teal-600"></i>
+            <span>Ambiente 100% biosseguro &amp; tecnologia sem dor</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna Direita: Fotografia com Selo Flutuante -->
+      <div class="lg:col-span-5 reveal flex justify-center" style="transition-delay: 0.15s">
+        <div class="relative w-full max-w-lg">
+          <div class="absolute -inset-2 bg-gradient-to-tr from-teal-200/50 to-cyanSoft-100 rounded-[2.5rem] blur-xl opacity-70"></div>
+          
+          <div class="relative rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl aspect-[4/3] bg-teal-50">
+            <img src="./odonto-hero.webp" 
+                 alt="Paciente sorridente em consultório odontológico clean e moderno" 
+                 class="w-full h-full object-cover object-center">
+          </div>
+
+          <!-- Badge Flutuante -->
+          <div class="absolute -bottom-5 -left-4 sm:left-4 bg-white/95 border border-teal-100 rounded-2xl shadow-xl px-5 py-3.5 flex items-center gap-3.5 backdrop-blur-md">
+            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slateText-900 leading-tight">Tecnologia Digital 3D</p>
+              <p class="text-[11px] text-teal-700 font-semibold mt-0.5">Diagnósticos rápidos e sem moldagens</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. FAIXA DE CONFIANÇA (TRUST SIGNALS) ================= -->
+<section class="bg-white border-y border-slate-100 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center reveal">
+      
+      <div class="p-4 rounded-2xl bg-teal-50/60 border border-teal-100/60">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-teal-700">15+</p>
+        <p class="text-xs sm:text-sm text-slateText-600 font-semibold mt-1">Anos de Experiência Clínica</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-teal-50/60 border border-teal-100/60">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-teal-700">+3.500</p>
+        <p class="text-xs sm:text-sm text-slateText-600 font-semibold mt-1">Sorrisos Renovados</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-teal-50/60 border border-teal-100/60">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-teal-700">CRO-SP</p>
+        <p class="text-xs sm:text-sm text-slateText-600 font-semibold mt-1">Especialistas Certificados</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-teal-50/60 border border-teal-100/60">
+        <p class="font-display text-3xl sm:text-4xl font-extrabold text-teal-700">100%</p>
+        <p class="text-xs sm:text-sm text-slateText-600 font-semibold mt-1">Pontualidade na Agenda</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. QUEBRA DE OBJEÇÕES (DORES X SOLUÇÃO) ================= -->
+<section id="diferenciais" class="py-20 lg:py-24 bg-ice">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+      <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Odontologia Sem Medo</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">
+        Esqueça tudo o que você achava desconfortável no dentista
+      </h2>
+      <p class="text-slateText-600 text-base sm:text-lg mt-4 leading-relaxed">
+        Eliminamos o medo de anestesias, o desconforto das massas de moldagem e as esperas cansativas na recepção com um protocolo focado no seu bem-estar.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Card 1 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card hover:-translate-y-1 transition-all">
+        <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6">
+          <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Tratamentos Suaves e Sem Dor</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">
+          Técnicas de anestesia computadorizada e sedação consciente para que você realize seus procedimentos com tranquilidade absoluta.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card hover:-translate-y-1 transition-all" style="transition-delay: 0.05s">
+        <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6">
+          <i data-lucide="scan" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Escaneamento Intraoral 3D</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">
+          Sem massas de moldagem que causam ânsia. Criamos a cópia digital do seu sorriso em segundos para prever o resultado antes de iniciar.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card hover:-translate-y-1 transition-all" style="transition-delay: 0.1s">
+        <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6">
+          <i data-lucide="clock-check" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Respeito Rigoroso ao Seu Horário</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">
+          Planejamos intervalos reais entre as consultas para que você seja atendido pontualmente no horário agendado, sem atrasos.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. ESPECIALIDADES EM GRADE (4:3) ================= -->
+<section id="especialidades" class="py-20 lg:py-24 bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Especialidades Clínicas</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">Soluções Completas para a Saúde do Seu Sorriso</h2>
+      <p class="text-slateText-600 mt-3">Procedimentos modernos realizados por dentistas especialistas em cada área.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card 1 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico1.webp" alt="Alinhadores transparentes e ortodontia digital" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Alinhadores Invisíveis &amp; Ortodontia Digital</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Planejamento 100% Digital</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Alinhe seus dentes de forma discreta, confortável e sem fios metálicos. Alinhadores transparentes removíveis para todas as idades.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Alinhadores%20Invis%C3%ADveis." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar avaliação ortodôntica →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group" style="transition-delay: 0.05s">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico2.webp" alt="Implantes dentários guiados por computador" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Implantes Dentários &amp; Reabilitação</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Cirurgia Guiada sem Cortes Excessivos</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Recupere a mastigação e a segurança ao sorrir com implantes de titânio de alta biocompatibilidade e próteses de cerâmica perfeitas.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Gostaria%20de%20uma%20avalia%C3%A7%C3%A3o%20para%20Implantes%20Dent%C3%A1rios." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar avaliação de implantes →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group" style="transition-delay: 0.1s">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico3.webp" alt="Clareamento dental a laser com baixa sensibilidade" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Clareamento Dental a Laser &amp; Caseiro</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Protocolo de Baixa Sensibilidade</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Dentes visivelmente mais claros com segurança para o esmalte, combinando sessões em consultório e moldeiras de manutenção em casa.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Quero%20agendar%20um%20Clareamento%20Dental." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar clareamento dental →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico4.webp" alt="Lentes de contato dental em porcelana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Lentes de Contato &amp; Facetas de Porcelana</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Harmonização e Forma Perfeita</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Correção milimétrica de manchas, fraturas e espaços entre os dentes (diastemas) com lâminas cerâmicas ultrafinas e resistentes.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Quero%20uma%20avalia%C3%A7%C3%A3o%20para%20Lentes%20de%20Contato." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar avaliação estética →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group" style="transition-delay: 0.05s">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico5.webp" alt="Odontopediatria e atendimento infantil acolhedor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Odontopediatria &amp; Cuidado Familiar</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Atendimento Lúdico e Gentil</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Ambiente acolhedor e linguagem amigável para cuidar dos dentes das crianças desde os primeiros anos, prevenindo o medo de dentista.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Quero%20agendar%20uma%20consulta%20infantil%20(Odontopediatria)." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar consulta infantil →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="reveal bg-ice rounded-3xl overflow-hidden border border-slate-200/70 hover:shadow-xl transition-all group" style="transition-delay: 0.1s">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="./odonto-servico6.webp" alt="Check-up preventivo e limpeza profilática" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-lg text-slateText-900 mb-1.5">Check-up Preventivo &amp; Profilaxia</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-700 mb-3">Remoção de Tártaro &amp; Prevenção</p>
+          <p class="text-sm text-slateText-600 leading-relaxed mb-5">Limpeza profunda com ultrassom, aplicação de flúor e avaliação digital preventiva para garantir dentes e gengivas 100% saudáveis.</p>
+          <a href="https://wa.me/5511974121551?text=Ol%C3%A1!%20Quero%20agendar%20um%20Check-up%20Preventivo%20e%20Limpeza." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800 transition-colors">
+            Agendar limpeza preventiva →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. CORPO CLÍNICO (HUMANIZAÇÃO) ================= -->
+<section id="corpo-clinico" class="py-20 lg:py-24 bg-teal-50/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+      <div class="lg:col-span-5 reveal">
+        <div class="relative rounded-[2rem] overflow-hidden shadow-xl border-4 border-white aspect-[4/5] bg-white">
+          <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=900&auto=format&fit=crop" 
+               alt="Dra. Camila Vasconcelos, dentista responsável técnica" 
+               class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 reveal" style="transition-delay: 0.1s">
+        <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Corpo Clínico Especializado</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">
+          Dra. Camila Vasconcelos
+        </h2>
+        <p class="text-teal-700 font-semibold text-sm mt-1">CRO-SP 98.432 · Responsável Técnica</p>
+
+        <p class="text-slateText-600 text-base leading-relaxed mt-5">
+          "Acredito que um tratamento odontológico de sucesso começa com escuta atenta e respeito ao ritmo de cada paciente. Nossa missão na OdontoPrime é proporcionar saúde bucal e estética impecável em um ambiente sereno e acolhedor."
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-teal-100 shadow-sm">
+            <i data-lucide="award" class="w-5 h-5 text-teal-600 shrink-0"></i>
+            <span class="text-xs font-semibold text-slateText-800">Especialista em Ortodontia &amp; Alinhadores</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-teal-100 shadow-sm">
+            <i data-lucide="award" class="w-5 h-5 text-teal-600 shrink-0"></i>
+            <span class="text-xs font-semibold text-slateText-800">Pós-graduada em Implantodontia Digital</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-teal-100 shadow-sm">
+            <i data-lucide="award" class="w-5 h-5 text-teal-600 shrink-0"></i>
+            <span class="text-xs font-semibold text-slateText-800">Membro da Sociedade Brasileira de Estética</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-teal-100 shadow-sm">
+            <i data-lucide="award" class="w-5 h-5 text-teal-600 shrink-0"></i>
+            <span class="text-xs font-semibold text-slateText-800">Mais de 15 anos de atuação clínica</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. PROCESSO EM 4 ETAPAS ================= -->
+<section id="processo" class="py-20 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Passo a Passo</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">Como Cuidamos do Seu Sorriso</h2>
+      <p class="text-slateText-600 mt-3">Transparência total desde a primeira conversa até o resultado final.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <div class="hidden lg:block absolute top-8 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-teal-100 via-teal-400 to-teal-100 z-0"></div>
+
+      <!-- Passo 1 -->
+      <div class="reveal text-center relative z-10 bg-white p-4">
+        <div class="w-16 h-16 rounded-2xl bg-teal-600 text-white font-display font-extrabold text-xl flex items-center justify-center mx-auto mb-6 shadow-tealGlow">01</div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Agendamento Fácil</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">Escolha seu horário pelo WhatsApp com nossa equipe sem filas de espera.</p>
+      </div>
+
+      <!-- Passo 2 -->
+      <div class="reveal text-center relative z-10 bg-white p-4" style="transition-delay: 0.05s">
+        <div class="w-16 h-16 rounded-2xl bg-teal-600 text-white font-display font-extrabold text-xl flex items-center justify-center mx-auto mb-6 shadow-tealGlow">02</div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Escaneamento 3D</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">Exames digitais rápidos para mapear a anatomia completa da sua boca.</p>
+      </div>
+
+      <!-- Passo 3 -->
+      <div class="reveal text-center relative z-10 bg-white p-4" style="transition-delay: 0.1s">
+        <div class="w-16 h-16 rounded-2xl bg-teal-600 text-white font-display font-extrabold text-xl flex items-center justify-center mx-auto mb-6 shadow-tealGlow">03</div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Plano Personalizado</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">Apresentação clara dos procedimentos necessários, prazos e custos fechados.</p>
+      </div>
+
+      <!-- Passo 4 -->
+      <div class="reveal text-center relative z-10 bg-white p-4" style="transition-delay: 0.15s">
+        <div class="w-16 h-16 rounded-2xl bg-teal-600 text-white font-display font-extrabold text-xl flex items-center justify-center mx-auto mb-6 shadow-tealGlow">04</div>
+        <h3 class="font-display font-bold text-lg text-slateText-900 mb-2">Tratamento Confortável</h3>
+        <p class="text-sm text-slateText-600 leading-relaxed">Execução com protocolos sem dor e acompanhamento atencioso em cada retorno.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. DEPOIMENTOS ================= -->
+<section id="depoimentos" class="py-20 lg:py-24 bg-ice">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Histórias Reais</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">O Que Nossos Pacientes Dizem</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Depoimento 1 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card">
+        <div class="flex text-amber-400 gap-1 mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-slateText-600 text-sm leading-relaxed mb-6">
+          "Eu tinha pavor de dentista por causa de experiências ruins na infância. Na OdontoPrime a Dra. Camila teve uma paciência incrível, o atendimento é super pontual e não senti absolutamente nada durante o implante."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 font-bold text-sm flex items-center justify-center">MS</div>
+          <div>
+            <p class="font-bold text-slateText-900 text-sm">Mariana Silveira</p>
+            <p class="text-xs text-slateText-500">Paciente há 2 anos · Implante &amp; Estética</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card" style="transition-delay: 0.05s">
+        <div class="flex text-amber-400 gap-1 mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-slateText-600 text-sm leading-relaxed mb-6">
+          "Fiz o tratamento com alinhadores invisíveis e o resultado foi muito mais rápido do que eu esperava. A clínica é linda, limpa e o escaneamento 3D dispensou aquelas massas horríveis."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 font-bold text-sm flex items-center justify-center">RB</div>
+          <div>
+            <p class="font-bold text-slateText-900 text-sm">Ricardo Brandão</p>
+            <p class="text-xs text-slateText-500">Paciente há 1 ano · Alinhadores Digitais</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="reveal bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card" style="transition-delay: 0.1s">
+        <div class="flex text-amber-400 gap-1 mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-slateText-600 text-sm leading-relaxed mb-6">
+          "Levo meus dois filhos para acompanhamento preventivo e eles adoram. Toda a equipe é carinhosa e o agendamento pelo WhatsApp facilita demais a minha rotina corrida."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 font-bold text-sm flex items-center justify-center">PN</div>
+          <div>
+            <p class="font-bold text-slateText-900 text-sm">Priscila Nogueira</p>
+            <p class="text-xs text-slateText-500">Mãe do Theo e da Clara · Odontopediatria</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. TRIAGEM & AGENDAMENTO IMEDIATO ================= -->
+<section id="agendamento" class="py-20 bg-white border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-br from-teal-700 via-teal-800 to-teal-900 rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden text-white">
+      
+      <!-- Detalhes de Fundo Suaves -->
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        <!-- Texto explicativo -->
+        <div class="lg:col-span-6 reveal">
+          <span class="inline-flex items-center gap-2 bg-white/15 border border-white/20 text-teal-100 text-xs font-bold tracking-wider px-4 py-2 rounded-full uppercase">
+            ✦ Resposta Rápida no WhatsApp
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-4 leading-tight">
+            Pronto para transformar a sua saúde bucal?
+          </h2>
+          <p class="text-teal-100 mt-5 leading-relaxed text-sm sm:text-base">
+            Preencha a triagem ao lado informando o procedimento desejado e o melhor turno. Nossa equipe entrará em contato em minutos para agendar sua avaliação.
+          </p>
+
+          <div class="mt-8 space-y-3.5">
+            <div class="flex items-center gap-3 text-sm text-teal-50">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-300 shrink-0"></i>
+              Avaliação completa com planejamento digital
+            </div>
+            <div class="flex items-center gap-3 text-sm text-teal-50">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-300 shrink-0"></i>
+              Pontualidade rigorosa e atendimento humanizado
+            </div>
+            <div class="flex items-center gap-3 text-sm text-teal-50">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-300 shrink-0"></i>
+              Facilidade de pagamento em até 12x sem juros
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Agendamento Odontológico -->
+        <div class="lg:col-span-6 reveal">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl text-slateText-900">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+              <div>
+                <p class="text-xs font-bold text-teal-700 uppercase tracking-wider">Agendamento Online</p>
+                <h3 class="text-lg font-bold text-slateText-900 font-display mt-0.5">Sua Avaliação Odontológica</h3>
+              </div>
+              <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </span>
+            </div>
+
+            <form id="odontoForm" class="space-y-4">
+              <div>
+                <label for="tratamentoDesejado" class="block text-xs font-semibold text-slateText-600 mb-1.5">Qual tratamento você busca?</label>
+                <select id="tratamentoDesejado" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slateText-900 focus:border-teal-600 outline-none">
+                  <option value="Alinhadores Invisíveis / Ortodontia">Alinhadores Invisíveis / Ortodontia</option>
+                  <option value="Implantes Dentários & Reabilitação">Implantes Dentários &amp; Reabilitação</option>
+                  <option value="Clareamento Dental a Laser">Clareamento Dental a Laser</option>
+                  <option value="Lentes de Contato / Facetas de Porcelana">Lentes de Contato / Facetas em Porcelana</option>
+                  <option value="Check-up Preventivo / Limpeza Profilática">Check-up Preventivo / Limpeza</option>
+                  <option value="Odontopediatria (Consulta Infantil)">Odontopediatria (Consulta Infantil)</option>
+                  <option value="Outro tratamento (quero orientação)">Outro procedimento (quero orientação)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="turnoPreferencia" class="block text-xs font-semibold text-slateText-600 mb-1.5">Melhor turno para a sua consulta</label>
+                <select id="turnoPreferencia" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slateText-900 focus:border-teal-600 outline-none">
+                  <option value="Manhã (08h às 12h)">Manhã (08h às 12h)</option>
+                  <option value="Tarde (13h às 17h)">Tarde (13h às 17h)</option>
+                  <option value="Noite (17h às 19h)">Noite (17h às 19h)</option>
+                  <option value="Sábado (08h às 13h)">Sábado (08h às 13h)</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label for="nomePaciente" class="block text-xs font-semibold text-slateText-600 mb-1.5">Seu Nome</label>
+                  <input type="text" id="nomePaciente" required placeholder="Ex: Lucas Ferreira" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slateText-900 focus:border-teal-600 outline-none placeholder:text-slate-400">
+                </div>
+                <div>
+                  <label for="whatsPaciente" class="block text-xs font-semibold text-slateText-600 mb-1.5">WhatsApp com DDD</label>
+                  <input type="tel" id="whatsPaciente" required placeholder="(11) 98765-4321" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slateText-900 focus:border-teal-600 outline-none placeholder:text-slate-400">
+                </div>
+              </div>
+
+              <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 transition-colors text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-tealGlow text-sm mt-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Solicitar Horário no WhatsApp
+              </button>
+              <p class="text-[11px] text-center text-slateText-500">Atendimento humanizado e resposta em poucos minutos.</p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11. FAQ SECTION ================= -->
+<section id="faq" class="py-20 lg:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-14 reveal">
+      <span class="text-teal-700 text-xs font-bold tracking-[0.2em] uppercase">Tire Suas Dúvidas</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slateText-900 mt-2">Perguntas Frequentes</h2>
+    </div>
+
+    <div class="space-y-4">
+
+      <div class="faq-item reveal bg-ice rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="faq-toggle focus-ring w-full flex items-center justify-between gap-4 text-left p-6" aria-expanded="false">
+          <span class="font-bold text-slateText-900 text-sm sm:text-base">Os procedimentos na OdontoPrime causam dor?</span>
+          <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-teal-600 shrink-0"></i>
+        </button>
+        <div class="faq-content px-6">
+          <p class="text-slateText-600 pb-6 text-sm leading-relaxed">
+            Não! Utilizamos técnicas anestésicas modernas, instrumentais ultrassônicos e protocolos específicos de sedação consciente para garantir conforto total durante todas as etapas.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal bg-ice rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="faq-toggle focus-ring w-full flex items-center justify-between gap-4 text-left p-6" aria-expanded="false">
+          <span class="font-bold text-slateText-900 text-sm sm:text-base">Como funciona a avaliação com escaneamento 3D?</span>
+          <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-teal-600 shrink-0"></i>
+        </button>
+        <div class="faq-content px-6">
+          <p class="text-slateText-600 pb-6 text-sm leading-relaxed">
+            Com uma câmera intraoral de alta precisão, geramos um modelo tridimensional digital dos seus dentes na tela. Você consegue visualizar o antes e a simulação do resultado final antes de começar.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal bg-ice rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="faq-toggle focus-ring w-full flex items-center justify-between gap-4 text-left p-6" aria-expanded="false">
+          <span class="font-bold text-slateText-900 text-sm sm:text-base">Quais são as opções e facilidades de pagamento?</span>
+          <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-teal-600 shrink-0"></i>
+        </button>
+        <div class="faq-content px-6">
+          <p class="text-slateText-600 pb-6 text-sm leading-relaxed">
+            Facilitamos seu tratamento com opções de parcelamento no cartão de crédito em até 12x sem juros, Pix com desconto para procedimentos à vista e emissão de recibos para reembolso de convênios.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal bg-ice rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="faq-toggle focus-ring w-full flex items-center justify-between gap-4 text-left p-6" aria-expanded="false">
+          <span class="font-bold text-slateText-900 text-sm sm:text-base">A clínica possui estacionamento e fácil acesso?</span>
+          <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-teal-600 shrink-0"></i>
+        </button>
+        <div class="faq-content px-6">
+          <p class="text-slateText-600 pb-6 text-sm leading-relaxed">
+            Sim! Estamos localizados em uma região nobre no Jardim América, com fácil acesso ao metrô, acessibilidade total para cadeirantes e convênio com estacionamento no próprio edifício.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12. FOOTER (100% CLARO & REFINADO) ================= -->
+<footer id="localizacao" class="bg-ice text-slateText-600 pt-16 pb-8 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold">
+            <i data-lucide="smile" class="w-5 h-5"></i>
+          </div>
+          <span class="font-display text-lg font-bold text-slateText-900">Odonto<span class="text-teal-600">Prime</span></span>
+        </div>
+        <p class="text-xs text-slateText-500 leading-relaxed mb-4">
+          Odontologia integrada, alinhadores invisíveis, implantes e estética facial com precisão digital e acolhimento humano.
+        </p>
+        <p class="text-[11px] text-slateText-500">Resp. Técnica: Dra. Camila Vasconcelos · CRO-SP 98.432</p>
+      </div>
+
+      <div>
+        <h4 class="text-slateText-900 font-bold text-sm mb-4">Navegação</h4>
+        <ul class="space-y-2.5 text-xs">
+          <li><a href="#especialidades" class="hover:text-teal-600 transition-colors">Especialidades</a></li>
+          <li><a href="#diferenciais" class="hover:text-teal-600 transition-colors">Por Que Nos Escolher</a></li>
+          <li><a href="#corpo-clinico" class="hover:text-teal-600 transition-colors">Corpo Clínico</a></li>
+          <li><a href="#processo" class="hover:text-teal-600 transition-colors">Como Funciona</a></li>
+          <li><a href="#depoimentos" class="hover:text-teal-600 transition-colors">Depoimentos de Pacientes</a></li>
+          <li><a href="#faq" class="hover:text-teal-600 transition-colors">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-slateText-900 font-bold text-sm mb-4">Contato &amp; Localização</h4>
+        <ul class="space-y-2.5 text-xs">
+          <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-teal-600"></i> (11) 97412-1551</li>
+          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-teal-600"></i> contato@odontoprime.com.br</li>
+          <li class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-teal-600 mt-0.5"></i> Av. das Nações, 1.200 – Jardim América, São Paulo / SP</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-slateText-900 font-bold text-sm mb-4">Horário de Atendimento</h4>
+        <ul class="space-y-2 text-xs">
+          <li class="flex justify-between"><span>Segunda a Sexta:</span> <strong class="text-slateText-800">08h às 19h</strong></li>
+          <li class="flex justify-between"><span>Sábado:</span> <strong class="text-slateText-800">08h às 13h</strong></li>
+          <li class="flex justify-between"><span>Domingo:</span> <strong class="text-slateText-800">Fechado</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slateText-500">
+      <p>© <span id="year"></span> OdontoPrime. Todos os direitos reservados.</p>
+      <p>Site modelo por <span class="text-teal-700 font-semibold">Willon Sites</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= SCRIPT COMPLETO ================= -->
+<script>
+  lucide.createIcons();
+
+  // Mobile Menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+  let menuOpen = false;
+
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    menuBtn.setAttribute('aria-expanded', String(menuOpen));
+    if (menuOpen) {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.opacity = '1';
+      iconMenu.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      iconMenu.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => { if (menuOpen) toggleMenu(); });
+  });
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-toggle');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // Formulário Odontológico Integrado ao WhatsApp
+  const odontoForm = document.getElementById('odontoForm');
+  odontoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const tratamento = document.getElementById('tratamentoDesejado').value;
+    const turno = document.getElementById('turnoPreferencia').value;
+    const nome = document.getElementById('nomePaciente').value.trim();
+    const whats = document.getElementById('whatsPaciente').value.trim();
+
+    const mensagem = `Olá! Meu nome é ${nome}. Gostaria de agendar uma avaliação na OdontoPrime para ${tratamento}, de preferência no período da ${turno}. Meu WhatsApp de contato é: ${whats}.`;
+    const url = `https://wa.me/5511974121551?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+
+  // Scroll Reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Ano Dinâmico
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
